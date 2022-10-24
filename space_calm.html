@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>负空格计算器</title>
+    <link rel="shortcut icon" type="icon/x-icon" href="./icon/tsb.ico" />
+  </head>
+  <body>
+    <div style="display: flex; justify-content: space-around">
+      <div style="display: flex; flex-direction: column; align-items: center">
+        <h1 style="margin-top: 100px">偏移量</h1>
+        <input
+          value="此处输入数值"
+          name="offset_value"
+          type="text"
+          oninput="value=value.replace(/[^\d]/g,'')"
+        />
+        <div style="visibility: visible">
+          <h5 style="margin-top: -20px; margin-left: 250px">🔴超出上限</h5>
+        </div>
+      </div>
+      <div>
+        <h1>
+          9→1<br />
+          8→3<br />
+          7→8<br />
+          6→21<br />
+          5→55<br />
+          4→144<br />
+          3→377<br />
+          2→987<br />
+          1→2584<br />
+          -→-6765<br />
+        </h1>
+      </div>
+    </div>
+  </body>
+</html>
