@@ -10,7 +10,13 @@
   <body>
     <div style="display: flex; justify-content: center; flex-direction: column">
       <div style="display: flex; flex-direction: column; align-items: center">
-        <input value="" id="input" type="text" oninput="value=value.replace()" style="margin-top: 100px">
+        <input
+          value=""
+          id="input"
+          type="text"
+          oninput="value=value.replace()"
+          style="margin-top: 100px"
+        />
         <h1 style="margin-top: 0px">想要偏移的量A</h1>
         <button id="button" onclick="transform()">转化</button>
         <script>
@@ -22,31 +28,38 @@
             if (offset_value.toString() == "NaN") {
               alert("错误：未发现可用数值\n\n请选择一个框输入待计算的数值");
             }
-            if(offset_value<=-6764){
-                alert("错误：A数值错误\n\n待计算的数值过小："+offset_value.toString());
+            if (offset_value <= -6764) {
+              alert(
+                "错误：A数值错误\n\n待计算的数值过小：" +
+                  offset_value.toString()
+              );
             }
           }
         </script>
         <h1 style="margin-top: 10px">计算所得结果B</h1>
-        <input style="margin-top: -20px" value="" id="input" type="text" oninput="value=value.replace()">
+        <input
+          style="margin-top: -20px"
+          value=""
+          id="input"
+          type="text"
+          oninput="value=value.replace()"
+        />
       </div>
       <div style="display: flex; justify-content: space-evenly">
         <h1>
-          A → B<br>
-          9 → 1<br>
-          8 → 3<br>
-          7 → 8<br>
-          6 → 21<br>
-          5 → 55<br>
-          4 → 144<br>
-          3 → 377<br>
-          2 → 987<br>
-          1 → 2584<br>
-          - → -6765<br>
+          A → B<br />
+          9 → 1<br />
+          8 → 3<br />
+          7 → 8<br />
+          6 → 21<br />
+          5 → 55<br />
+          4 → 144<br />
+          3 → 377<br />
+          2 → 987<br />
+          1 → 2584<br />
+          - → -6765<br />
         </h1>
       </div>
     </div>
-  
-
-</body>
+  </body>
 </html>
