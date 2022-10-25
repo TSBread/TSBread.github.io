@@ -58,7 +58,7 @@ function oper() {
       sh +
       ",dz=" +
       sw +
-      "";
+      "]";
   }
   output.innerHTML = result;
 }
