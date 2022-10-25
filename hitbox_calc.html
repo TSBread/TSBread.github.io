@@ -5,25 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>碰撞箱计算器</title>
+    <link
+      rel="shortcut icon"
+      type="icon/x-icon"
+      href="./icon/hitbox_calc.ico"
+    />
   </head>
-  <body style="margin-top: 100px;" background="">
+  <body
+    style="
+      margin-top: 100px;
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+    "
+    background="pic/215838.gif"
+  >
     <div style="display: flex; flex-direction: column; align-items: center">
-        <img src="https://i2.hdslb.com/bfs/face/0b38f98c687ba8220860cc675cdbcbd05599a56e.jpg" style="border-radius:80% 80% 80% 80%;margin: 5px #000000" title="TSBread2960278" width=96px>
+      <img
+        src="https://i2.hdslb.com/bfs/face/0b38f98c687ba8220860cc675cdbcbd05599a56e.jpg"
+        style="border-radius: 80% 80% 80% 80%; margin: 5px #000000"
+        title="TSBread2960278"
+        width="96px"
+      />
     </div>
     <div style="display: flex; flex-direction: column; align-items: center">
-      <tip style="display: block; font-size: 0.83em; font-weight: bold"
+      <tip
+        style="display: block; font-size: 1.2em; font-weight: bold; color: #f0f0f0"
         >碰撞箱宽/长</tip
       >
       <input value="" id="input_w" type="text" />
       <br />
-      <tip style="display: block; font-size: 0.83em; font-weight: bold"
+      <tip
+        style="display: block; font-size: 1.2em; font-weight: bold; color: #f0f0f0"
         >碰撞箱高</tip
       >
       <input value="" id="input_h" type="text" />
       <br />
       <button id="button" onclick="oper()">点击计算</button>
       <br />
-      <textarea id="output" style="width: 512px; height: 96px">输出在这里</textarea>
+      <textarea id="output" style="width: 512px; height: 96px">
+输出在这里</textarea
+      >
       <script src="hitbox_calc.js"></script>
     </div>
   </body>
