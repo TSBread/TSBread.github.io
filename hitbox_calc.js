@@ -61,4 +61,10 @@ function oper() {
       "]";
   }
   output.innerHTML = result;
+
+  //存储此次输入数据到浏览器，下次打开网页将直接加载本次所输入的数值以及结果
+  localStorage.clear();
+  localStorage.setItem("w", w);
+  localStorage.setItem("h", h);
+  localStorage.setItem("result", result);
 }
