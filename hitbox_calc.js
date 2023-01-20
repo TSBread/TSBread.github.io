@@ -43,8 +43,8 @@ function oper() {
       ",dz=" +
       sw +
       "]";
-    offw = -w / 2 - offw;
-    offh = -h / 2 - offh;
+    offw = (-w / 2 - offw).toFixed(3);
+    offh = (-h / 2 - offh).toFixed(3);
     result +=
       " positioned ~" +
       offw +
