@@ -3,11 +3,11 @@ function oper() {
   let h = parseFloat(document.getElementById("input_h").value);
   let result = "";
   let output = document.getElementById("output");
-  let sw = w - 1;
+  let sw = (w - 1).toFixed(3);
   if (sw < 0) {
     sw = 0;
   }
-  let sh = h - 1;
+  let sh = (h - 1).toFixed(3);
   if (sh < 0) {
     sh = 0;
   }
