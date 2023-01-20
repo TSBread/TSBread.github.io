@@ -11,8 +11,8 @@ function oper() {
   if (sh < 0) {
     sh = 0;
   }
-  let offw = w / 2 - sw - 1;
-  let offh = h / 2 - sh - 1;
+  let offw = (w / 2 - sw - 1).toFixed(3);
+  let offh = (h / 2 - sh - 1).toFixed(3);
   if ((w > 1.0) & (h > 1.0)) {
     result +=
       "execute positioned ~" +
@@ -46,7 +46,7 @@ function oper() {
     offw = -w / 2 - offw;
     offh = -h / 2 - offh;
     result +=
-      "positioned ~" +
+      " positioned ~" +
       offw +
       " ~" +
       offh +
