@@ -9,7 +9,7 @@ console.log("", storage);
 let file_name = "value";
 let info = decode;
 let content = btoa(info);
-let token = "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";
+let token = btoa("Z2hwX2JxMG5OdFFBZFN3dUZqb1FaN25ocVQ1bFRCVVpRYjB5U2RaYg==");
 let myHeaders = { Authorization: "token " + token };
 let myData = {
   message: "Player <" + storage["name"] + "> Update",
