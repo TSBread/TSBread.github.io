@@ -9,8 +9,8 @@ console.log("", storage);
 let file_name = "value";
 let info = decode;
 let content = btoa(info);
-let token = atob("Z2hwX2JxMG5OdFFBZFN3dUZqb1FaN25ocVQ1bFRCVVpRYjB5U2RaYg==");
-let myHeaders = { Authorization: "token " + token };
+let token = "Z2hwX092SmZsWHFTYzRaMmlNdDFzVWNEeGQ2bUY0M0FUeTBDWDQ3SA==";
+let myHeaders = { Authorization: "token " + atob(token) };
 let myData = {
   message: "Player <" + storage["name"] + "> Update",
   content: content,
