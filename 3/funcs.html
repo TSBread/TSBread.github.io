@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>STM32 &#x5e93;&#x51fd;&#x6570;&#x5185;&#x90e8;&#x5206;&#x5e38;&#x7528;&#x51fd;&#x6570;&#x4e2a;&#x4eba;&#x4e8c;&#x6b21;&#x89e3;&#x91ca;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="stm32-库函数内部分常用函数个人二次解释">STM32 库函数内部分常用函数个人二次解释</h1>
+<p><strong>By TSBread</strong></p>
+<p><strong>排序方式按照学习顺序&amp;代码执行顺序自上而下</strong></p>
+<p><a href="./PDF/STM32F103xx%E5%9B%BA%E4%BB%B6%E5%87%BD%E6%95%B0%E5%BA%93%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf"><strong>官方库函数用户手册（版本较旧）</strong></a></p>
+<p><a href="./PDF/stm32f10x_stdperiph_lib_um.chm"><strong>V3.5.0 官方库函数文档（编译的 HTML 帮助文件）</strong></a></p>
+<h2 id="stm32f10x_rcc"><code>stm32f10x_rcc</code>：</h2>
+<p><code>void RCC_AHBPeriphClockCmd(uint32_t RCC_AHBPeriph, FunctionalState NewState);</code></p>
+<ul>
+<li>功能：启用或关闭 AHB 外设时钟</li>
+<li>参数：
+<ol>
+<li>选择需要控制的 AHB 外设名称（如 DMA），命名规则<code>RCC_AHBPeriph_XXX</code>。</li>
+<li>选择是否要启用时钟，包含<code>ENABLE</code>、<code>DISABLE</code>共 2 个枚举成员</li>
+</ol>
+</li>
+</ul>
+<p><code>void RCC_APB1PeriphClockCmd(uint32_t RCC_APB1Periph, FunctionalState NewState);</code></p>
+<ul>
+<li>功能：启用或关闭 APB1 外设时钟</li>
+<li>参数：
+<ol>
+<li>选择需要控制的 APB1 外设名称，命名规则<code>RCC_APB1Periph_XXX</code>。</li>
+<li>选择是否要启用时钟，包含<code>ENABLE</code>、<code>DISABLE</code>共 2 个枚举成员</li>
+</ol>
+</li>
+</ul>
+<p><code>void RCC_APB2PeriphClockCmd(uint32_t RCC_APB2Periph, FunctionalState NewState);</code></p>
+<ul>
+<li>功能：启用或关闭 APB2 外设时钟</li>
+<li>参数：
+<ol>
+<li>选择需要控制的 APB2 外设名称（如 ADC、GPIO），命名规则<code>RCC_APB2Periph_XXX</code>。如要开启 GPIOA 的时钟则为<code>RCC_APB2Periph_GPIOA</code>、AFIO 的则为<code>RCC_APB2Periph_AFIO</code></li>
+<li>选择是否要启用时钟，包含<code>ENABLE</code>、<code>DISABLE</code>共 2 个枚举成员</li>
+</ol>
+</li>
+</ul>
+<p><code>void RCC_ADCCLKConfig(uint32_t RCC_PCLK2);</code></p>
+<ul>
+<li>功能：用来配置 ADCCLK 分频器，可以对 APB2 的 72MHz 时钟选择 2、4、6、8 分频，输入到 ADCCLK（仅 6、8 分频有效，对应 12MHz、9MHz）</li>
+<li>参数：
+<ol>
+<li>选择分频，包含：<code>RCC_PCLK2_Div2</code>、<code>RCC_PCLK2_Div4</code>、<code>RCC_PCLK2_Div6</code>、<code>RCC_PCLK2_Div8</code></li>
+</ol>
+</li>
+</ul>
+<h2 id="stm32f10x_gpio"><code>stm32f10x_gpio</code>：</h2>
+<p><code>void GPIO_DeInit(GPIO_TypeDef* GPIOx);</code>：</p>
+<ul>
+<li>功能：将指定 GPIO 外设复位</li>
+<li>参数：
+<ol>
+<li>GPIO 结构体指针，可填写<code>GPIOA</code>、<code>GPIOB</code>、<code>GPIOC</code>、<code>...</code></li>
+</ol>
+</li>
+</ul>
+<p><code>void GPIO_AFIODeInit(GPIO_TypeDef* GPIOx);</code>：</p>
+<ul>
+<li>功能：将 AFIO 外设复位</li>
+</ul>
+<p><code>void GPIO_Init(GPIO_TypeDef* GPIOx, GPIO_InitTypeDef* GPIO_InitStruct);</code>：</p>
+<ul>
+<li>功能：使用结构体参数来初始化 GPIO</li>
+<li>参数：
+<ol>
+<li>GPIO 结构体指针，可填写<code>GPIOA</code>、<code>GPIOB</code>、<code>GPIOC</code>、<code>...</code></li>
+<li>初始化结构体指针，包含成员：
+<ul>
+<li><code>GPIO_Pin</code>：通过宏定义指向 GPIO 的 16 个引脚，包含<code>GPIO_Pin_1~15</code>和<code>GPIO_Pin_All</code>共 17 个宏定义。可使用<code>|</code>一次性控制多个引脚</li>
+<li><code>GPIO_Speed</code>：决定 GPIO 最大电平反转速度，包含<code>GPIO_Speed_10MHz</code>、<code>GPIO_Speed_2MHz</code>、<code>GPIO_Speed_50MHz</code>共 3 个枚举成员</li>
+<li><code>GPIO_Mode</code>：配置 GPIO 的输入/输出模式，包含：<code>GPIO_Mode_AIN</code>、<code>GPIO_Mode_IN_FLOATING</code>、<code>GPIO_Mode_IPD</code>、<code>GPIO_Mode_IPU</code>、<code>GPIO_Mode_Out_OD</code>、<code>GPIO_Mode_Out_PP</code>、<code>GPIO_Mode_AF_OD</code>、<code>GPIO_Mode_AF_PP</code></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p><code>void GPIO_StructInit(GPIO_InitTypeDef* GPIO_InitStruct);</code></p>
+<ul>
+<li>功能：把初始化结构体变量赋一个默认值</li>
+<li>参数：初始化结构体指针</li>
+</ul>
+<p><code>uint8_t GPIO_ReadInputDataBit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);</code></p>
+<ul>
+<li>功能：读取指定 GPIO 的指定引脚输入状态</li>
+<li>参数：
+<ol>
+<li>GPIO 结构体指针，可填写<code>GPIOA</code>、<code>GPIOB</code>、<code>GPIOC</code>、<code>...</code></li>
+<li>通过宏定义指向 GPIO 的 16 个引脚，包含<code>GPIO_Pin_1~15</code>和<code>GPIO_Pin_All</code>共 17 个宏定义。可使用<code>|</code>一次性控制多个引脚</li>
+</ol>
+</li>
+<li>返回：对应的引脚状态值</li>
+</ul>
+<p><code>uint16_t GPIO_ReadInputData(GPIO_TypeDef* GPIOx);</code></p>
+<ul>
+<li>功能：读取指定 GPIO 的指定引脚输入状态</li>
+<li>参数：
+<ol>
+<li>GPIO 结构体指针，可填写<code>GPIOA</code>、<code>GPIOB</code>、<code>GPIOC</code>、<code>...</code></li>
+</ol>
+</li>
+<li>返回：对应 GPIO 的状态值</li>
+</ul>
+<p><code>uint8_t GPIO_ReadOutputDataBit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);</code></p>
+<ul>
+<li>功能：读取指定 GPIO 的指定引脚输出状态</li>
+<li>参数：
+<ol>
+<li>GPIO 结构体指针，可填写<code>GPIOA</code>、<code>GPIOB</code>、<code>GPIOC</code>、<code>...</code></li>
+<li>通过宏定义指向 GPIO 的 16 个引脚，包含<code>GPIO_Pin_1~15</code>和<code>GPIO_Pin_All</code>共 17 个宏定义。可使用<code>|</code>一次性控制多个引脚</li>
+</ol>
+</li>
+<li>返回：对应的引脚状态值</li>
+</ul>
+<p><code>uint16_t GPIO_ReadOutputData(GPIO_TypeDef* GPIOx);</code></p>
+<ul>
+<li>功能：读取指定 GPIO 的输出状态</li>
+<li>参数：
+<ol>
+<li>GPIO 结构体指针，可填写<code>GPIOA</code>、<code>GPIOB</code>、<code>GPIOC</code>、<code>...</code></li>
+</ol>
+</li>
+<li>返回：对应 GPIO 的状态值</li>
+</ul>
+<p><code>void GPIO_SetBits(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);</code></p>
+<ul>
+<li>功能：将指定 GPIO 的指定引脚设置为<strong>高电平</strong></li>
+<li>参数：
+<ol>
+<li>GPIO 结构体指针，可填写<code>GPIOA</code>、<code>GPIOB</code>、<code>GPIOC</code>、<code>...</code></li>
+<li>通过宏定义指向 GPIO 的 16 个引脚，包含<code>GPIO_Pin_1~15</code>和<code>GPIO_Pin_All</code>共 17 个宏定义。可使用<code>|</code>一次性控制多个引脚</li>
+</ol>
+</li>
+</ul>
+<p><code>void GPIO_ResetBits(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);</code></p>
+<ul>
+<li>功能：将指定 GPIO 的指定引脚设置为<strong>低电平</strong></li>
+<li>参数：
+<ol>
+<li>GPIO 结构体指针，可填写<code>GPIOA</code>、<code>GPIOB</code>、<code>GPIOC</code>、<code>...</code></li>
+<li>通过宏定义指向 GPIO 的 16 个引脚，包含<code>GPIO_Pin_1~15</code>和<code>GPIO_Pin_All</code>共 17 个宏定义。可使用<code>|</code>一次性控制多个引脚</li>
+</ol>
+</li>
+</ul>
+<p><code>void GPIO_WriteBit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, BitAction BitVal);</code></p>
+<ul>
+<li>功能：将指定 GPIO 的指定引脚设置为<code>BitVal</code>的值</li>
+<li>参数：
+<ol>
+<li>GPIO 结构体指针，可填写<code>GPIOA</code>、<code>GPIOB</code>、<code>GPIOC</code>、<code>...</code></li>
+<li>通过宏定义指向 GPIO 的 16 个引脚，包含<code>GPIO_Pin_1~15</code>和<code>GPIO_Pin_All</code>共 17 个宏定义。可使用<code>|</code>一次性控制多个引脚</li>
+<li>选择端口的输出电平，包含<code>Bit_RESET</code>（<strong>低电平</strong>）、<code>Bit_SET</code>（<strong>高电平</strong>）共 2 个枚举成员</li>
+</ol>
+</li>
+</ul>
+<p><code>void GPIO_Write(GPIO_TypeDef* GPIOx, uint16_t PortVal);</code></p>
+<ul>
+<li>功能：将指定 GPIO 的 16 个引脚同时进行写入操作</li>
+<li>参数：
+<ol>
+<li>GPIO 结构体指针，可填写<code>GPIOA</code>、<code>GPIOB</code>、<code>GPIOC</code>、<code>...</code></li>
+<li>指定写入到数据寄存器的值，因 C 语言不支持直接写二进制所以此处使用十六进制写入</li>
+</ol>
+</li>
+</ul>
+<p><code>void GPIO_PinRemapConfig(uint32_t GPIO_Remap, FunctionalState NewState);</code></p>
+<ul>
+<li>功能：用来进行引脚重映射</li>
+<li>参数：
+<ol>
+<li>所要重映射的方式（参考引脚映射表中的复用功能）</li>
+<li>选择是否要启用，包含<code>ENABLE</code>、<code>DISABLE</code>共 2 个枚举成员</li>
+</ol>
+</li>
+<li><strong>*注意</strong>：<code>PA13</code>、<code>PA14</code>、<code>PA15</code>、<code>PB3</code>、<code>PB4</code>、默认复用了调试端口，如果要复用则需要先关闭调式端口的复用然后再开启（<strong>能不用就不用</strong>）</li>
+</ul>
+<p><code>void GPIO_EXTILineConfig(uint8_t GPIO_PortSource, uint8_t GPIO_PinSource);</code></p>
+<ul>
+<li>功能：用来配置<strong>AFIO</strong>的数据选择器，来选择所需的中断引脚</li>
+<li>参数：
+<ol>
+<li>选择某个 GPIO 外设作为外部中断源，可填<code>GPIO_PortSourceGPIOA~G</code></li>
+<li>选择 GPIO 的某个 Pin 作为外部中断线，可填<code>GPIO_PinSource0~15</code></li>
+</ol>
+</li>
+</ul>
+<h2 id="stm32f10x_exti"><code>stm32f10x_exti</code>：</h2>
+<p><code>void EXTI_DeInit(void);</code></p>
+<ul>
+<li>功能：调用后将 EXTI 的配置全部清除，恢复为上电默认状态</li>
+</ul>
+<p><code>void EXTI_Init(EXTI_InitTypeDef* EXTI_InitStruct);</code></p>
+<ul>
+<li>功能：使用结构体参数来初始化 EXTI</li>
+<li>参数：
+<ol>
+<li>初始化结构体指针，包含成员：
+<ul>
+<li><code>EXTI_Line</code>：通过宏定义指向 EXTI 的 20 个引脚(0~15 为 GPIO_Pin 中断源），包含<code>EXTI_Line0~19</code>。可使用<code>|</code>一次性选择多个引脚</li>
+<li><code>EXTI_Mode</code>：指定外部中断线响应模式（中断模式 / 事件模式），包含<code>EXTI_Mode_Interrupt</code>、<code>EXTI_Mode_Event</code>共 2 个枚举成员</li>
+<li><code>EXTI_Trigger</code>：选择外部中断触发模式（上升沿 / 下降沿 / 双边沿），包含<code>EXTI_Trigger_Rising</code>、<code>EXTI_Trigger_Falling</code>、<code>EXTI_Trigger_Rising_Falling</code>共 3 个枚举成员</li>
+<li><code>EXTI_LineCmd</code>：选择中断线的新状态（开启 / 关闭），包含<code>ENABLE</code>、<code>DISABLE</code>共 2 个枚举成员</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p><code>void EXTI_StructInit(EXTI_InitTypeDef* EXTI_InitStruct);</code></p>
+<ul>
+<li>功能：调用后将参数传递的结构体变量赋为默认值</li>
+</ul>
+<p><code>void EXTI_GenerateSWInterrupt(uint32_t EXTI_Line);</code></p>
+<ul>
+<li>功能：调用后便可软件触发一次外部中断</li>
+<li>参数：
+<ol>
+<li>指定的中断线</li>
+</ol>
+</li>
+</ul>
+<p><code>FlagStatus EXTI_GetFlagStatus(uint32_t EXTI_Line);</code></p>
+<ul>
+<li>功能：获取指定标志位是否被置 1（缓慢，主程序内使用）</li>
+<li>参数：
+<ol>
+<li>指定的中断线</li>
+</ol>
+</li>
+<li>返回：选择标志位的状态，包含<code>RESET</code>、<code>SET</code>共 2 个枚举成员</li>
+</ul>
+<p><code>void EXTI_ClearFlag(uint32_t EXTI_Line);</code></p>
+<ul>
+<li>功能：对置 1 的标志位进行清除（缓慢，主程序内使用）</li>
+<li>参数：
+<ol>
+<li>指定的中断线</li>
+</ol>
+</li>
+<li><strong>*注意</strong>：每次中断程序结束后都应清除中断标志位，否则会一直进入中断</li>
+</ul>
+<p><code>ITStatus EXTI_GetITStatus(uint32_t EXTI_Line);</code></p>
+<ul>
+<li>功能：获取中断标志位是否被置 1（紧急，在中断函数内即可使用）。一般用作区分具体是哪个通道触发的中断</li>
+<li>参数：
+<ol>
+<li>指定的中断线</li>
+</ol>
+</li>
+<li>返回：选择标志位的状态，包含<code>RESET</code>、<code>SET</code>共 2 个枚举成员</li>
+</ul>
+<p><code>void EXTI_ClearITPendingBit(uint32_t EXTI_Line);</code></p>
+<ul>
+<li>功能：清除中断挂起标志位（紧急，在中断函数内即可使用）</li>
+<li>参数：
+<ol>
+<li>指定的中断线</li>
+</ol>
+</li>
+<li><strong>*注意</strong>：每次中断程序结束后都应清除中断标志位，否则会一直进入中断</li>
+</ul>
+<h2 id="misc"><code>misc</code>：</h2>
+<p><strong>*因为 NVIC 是内核外设所以 NVIC 相关函数也在 misc（杂项）中</strong></p>
+<p><code>void NVIC_PriorityGroupConfig(uint32_t NVIC_PriorityGroup);</code></p>
+<ul>
+<li>功能：对中断进行分组</li>
+<li>参数：
+<ol>
+<li>配置优先级分组（抢占优先级（pre-emption priority）和响应优先级（subpriority）），可以填入：
+<ul>
+<li><code>NVIC_PriorityGroup_0</code>：0 位抢占优先级，4 位响应优先级</li>
+<li><code>NVIC_PriorityGroup_1</code>：1 位抢占优先级，3 位响应优先级</li>
+<li><code>NVIC_PriorityGroup_2</code>：2 位抢占优先级，2 位响应优先级</li>
+<li><code>NVIC_PriorityGroup_3</code>：3 位抢占优先级，1 位响应优先级</li>
+<li><code>NVIC_PriorityGroup_4</code>：4 位抢占优先级，0 位响应优先级</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><strong>*注意</strong>：分组方式整个芯片只能使用一种，所以整个工程只要在 NVIC 初始化前执行一次即可</li>
+</ul>
+<p><code>void NVIC_Init(NVIC_InitTypeDef* NVIC_InitStruct);</code></p>
+<ul>
+<li>
+<p>功能：使用结构体参数来初始化 NVIC</p>
+</li>
+<li>
+<p>参数：</p>
+<ol>
+<li>
+<p>初始化结构体指针，包含成员：</p>
+<ul>
+<li>
+<p><code>NVIC_IRQChannel</code>：指定一个中断通道，参数参考下图 👇</p>
+<p><img src="file:///d:\Project\STM32\.Notes\IMG\EXTI_extra_0.png" alt=""></p>
+<p><img src="file:///d:\Project\STM32\.Notes\IMG\EXTI_extra_0_1.png" alt=""></p>
+</li>
+<li>
+<p><code>NVIC_IRQChannelPreemptionPriority</code>：指定抢占优先级（取值范围参考表内值）</p>
+</li>
+<li>
+<p><code>NVIC_IRQChannelSubPriority</code>：指定响应优先级（取值范围参考表内值）</p>
+</li>
+<li>
+<p><code>NVIC_IRQChannelCmd</code>：指定中断通道是使能还是失能（开启 / 关闭），包含<code>ENABLE</code>、<code>DISABLE</code>共 2 个枚举成员</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>*注意</strong>：设置结构体.抢占&amp;响应优先级的取值范围应参考下表 👇</p>
+</li>
+</ul>
+<p><img src="file:///d:\Project\STM32\.Notes\IMG\EXTI_extra_1.png" alt=""></p>
+<h2 id="startup_stm32f10x_mds"><code>startup_stm32f10x_md.s</code>：</h2>
+<p><strong>*为了获取中断函数名称</strong></p>
+<p><code>void 中断函数名称(void);</code></p>
+<ul>
+<li>功能：当中断发生且<strong>响应模式</strong>为<strong>触发中断</strong>时运行对应中断函数</li>
+<li><strong>*注意</strong>：中断函数名称见下图 👇
+<img src="file:///d:\Project\STM32\.Notes\IMG\EXTI_extra_2.png" alt=""></li>
+</ul>
+<h2 id="stm32f10x_tim"><code>stm32f10x_tim</code>：</h2>
+<p><code>void TIM_TimeBaseInit(TIM_TypeDef* TIMx, TIM_TimeBaseInitTypeDef* TIM_TimeBaseInitStruct);</code></p>
+<ul>
+<li>
+<p>功能：时基单元初始化</p>
+</li>
+<li>
+<p>参数：</p>
+<ol>
+<li>
+<p>选择某个定时器</p>
+</li>
+<li>
+<p>时基单元参数结构体，包含成员：</p>
+<ul>
+<li>
+<p><code>TIM_Prescaler</code>：PSC 预分频器的值</p>
+</li>
+<li>
+<p><code>TIM_CounterMode</code>：计数模式，包含：</p>
+<ul>
+<li><code>TIM_CounterMode_Up</code>：向上计数</li>
+<li><code>TIM_CounterMode_Down</code>：向下计数</li>
+<li><code>TIM_CounterMode_CenterAligned1</code>：中央对齐模式 1，在<code>上升 -&gt; 下降 -&gt; 上升</code>的下降处产生中断</li>
+<li><code>TIM_CounterMode_CenterAligned2</code>：中央对齐模式 2，在<code>上升 -&gt; 下降 -&gt; 上升</code>的上升处产生中断</li>
+<li><code>TIM_CounterMode_CenterAligned3</code>：中央对齐模式 3，在<code>上升 -&gt; 下降 -&gt; 上升</code>的上升和下降处均可产生中断</li>
+</ul>
+</li>
+<li>
+<p><code>TIM_Period</code>：周期，也就是 ARR 自动重装的值</p>
+</li>
+<li>
+<p><code>TIM_ClockDivision</code>：指定时钟要分频多少，位于外部输入的输入滤波。在一个固定的时钟频率 f 下进行采样，若连续 n 个采样点电平都相同则说明输入信号稳定，将采样值输出；否则说明信号有抖动，保持上一次的输出或直接输出低电平（频率越低采样点数越多，滤波效果越好，信号延迟就越大）。包含：<code>TIM_CKD_DIV1</code>（一般选这个即可）、<code>TIM_CKD_DIV2</code>、<code>TIM_CKD_DIV4</code></p>
+</li>
+<li>
+<p><code>TIM_RepetitionCounter</code>：重复计数器的值（高级定时器），若不用则给 0 即可</p>
+</li>
+<li>
+<p><strong>*注意</strong>：</p>
+<ol>
+<li>成员不包含 CNT 计数器的值。CNT 计数器的值可使用<code>TIM_GetCounter</code>和<code>TIM_SetCounter</code>来进行读写</li>
+<li>计数器溢出频率：<code>CK_CNT_OV =  CK_PSC（72MHz） / (PSC + 1) / (ARR + 1)</code>。因为预分频器和自动重装器都有一个数的偏差，给参数赋值时可以使用预设值 - 1（如要频率为 1Hz，则<code>.TIM_Prescaler = 7200 - 1</code>、<code>.TIM_Period = 1000 - 1</code>即可）。自动重装值越高频率越高</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>*注意</strong>：因为该函数在末尾会立刻更新预分频器更新，导致生成一个更新事件，从而使得更新中断同时发生，会置更新标志位，所以会导致刚一上电就会立即进入中断函数。<strong>解决方法：在<code>TIM_TimeBaseInit</code>后用<code>TIM_ClearFlag</code>手动清除<code>TIM_FLAG_Update</code>的更新标志位即可</strong></p>
+</li>
+</ul>
+<p><code>void TIM_TimeBaseStructInit(TIM_TimeBaseInitTypeDef* TIM_TimeBaseInitStruct);</code></p>
+<ul>
+<li>功能：给时基单元结构体赋初值</li>
+</ul>
+<p><code>void TIM_Cmd(TIM_TypeDef* TIMx, FunctionalState NewState);</code></p>
+<ul>
+<li>功能：给计数器使能，对应<strong>运行控制</strong>部分</li>
+<li>参数：
+<ol>
+<li>选择定时器</li>
+<li>指定使能还是失能，包含<code>ENABLE</code>、<code>DISABLE</code>共 2 个枚举成员</li>
+</ol>
+</li>
+</ul>
+<p><code>void TIM_ITConfig(TIM_TypeDef* TIMx, uint16_t TIM_IT, FunctionalState NewState);</code></p>
+<ul>
+<li>功能：使能中断输出信号，对应<strong>中断输出控制</strong></li>
+<li>参数：
+<ol>
+<li>选择定时器</li>
+<li>选择要配置哪个中断输出，包含（任意组合）：
+<ul>
+<li><code>TIM_IT_Update</code>: 更新中断</li>
+<li><code>TIM_IT_CC1</code>: TIM Capture Compare 1 Interrupt source</li>
+<li><code>TIM_IT_CC2</code>: TIM Capture Compare 2 Interrupt source</li>
+<li><code>TIM_IT_CC3</code>: TIM Capture Compare 3 Interrupt source</li>
+<li><code>TIM_IT_CC4</code>: TIM Capture Compare 4 Interrupt source</li>
+<li><code>TIM_IT_COM</code>: TIM Commutation Interrupt source</li>
+<li><code>TIM_IT_Trigger</code>: TIM Trigger Interrupt source</li>
+<li><code>TIM_IT_Break</code>: TIM Break Interrupt source</li>
+</ul>
+</li>
+<li>指定使能还是失能，包含<code>ENABLE</code>、<code>DISABLE</code>共 2 个枚举成员</li>
+</ol>
+</li>
+</ul>
+<p><strong>以下函数对应时基单元的时钟源选择部分：</strong></p>
+<ul>
+<li>
+<p><code>void TIM_InternalClockConfig(TIM_TypeDef* TIMx);</code></p>
+<ul>
+<li>功能：选择内部时钟作为时基单元的时钟源。<strong>（定时器默认选择内部时钟，若不调用该函数也可以）</strong></li>
+<li>参数：选择定时器</li>
+</ul>
+</li>
+<li>
+<p><code>void TIM_ITRxExternalClockConfig(TIM_TypeDef* TIMx, uint16_t TIM_InputTriggerSource);</code></p>
+<ul>
+<li>功能：选择<code>ITRx</code>其他定时器的时钟作为时基单元的时钟源，实现级联功能</li>
+<li>参数：
+<ol>
+<li>选择定时器</li>
+<li>要接入的<code>ITR0~3</code>接口，包含<code>TIM_TS_ITR0</code>、<code>TIM_TS_ITR1</code>、<code>TIM_TS_ITR2</code>、<code>TIM_TS_ITR3</code>共 4 个宏定义</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><code>void TIM_TIxExternalClockConfig(TIM_TypeDef* TIMx, uint16_t TIM_TIxExternalCLKSource, uint16_t TIM_ICPolarity, uint16_t ICFilter);</code></p>
+<ul>
+<li>功能：选择<code>TIx</code>捕获通道的时钟作为时基单元的时钟源</li>
+<li>参数：
+<ol>
+<li>选择定时器</li>
+<li>选择<code>TIx</code>具体的某个引脚</li>
+<li>输入的极性</li>
+<li>输入的滤波器</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><code>void TIM_ETRClockMode1Config(TIM_TypeDef* TIMx, uint16_t TIM_ExtTRGPrescaler, uint16_t TIM_ExtTRGPolarity, uint16_t ExtTRGFilter);</code></p>
+<ul>
+<li>功能：选择 ETR 通过<strong>外部时钟模式 1</strong>输入的时钟作为时基单元的时钟源</li>
+<li>参数：
+<ol>
+<li>选择定时器</li>
+<li>对 ETR 的外部时钟做分频</li>
+<li>输入的极性</li>
+<li>输入的滤波器</li>
+</ol>
+</li>
+<li><strong>*注意</strong>：对于<code>ETR</code>输入的外部时钟而言，模式 1 与模式 2 是等效的，若不需要触发输入的功能则两个函数可以互换</li>
+</ul>
+</li>
+<li>
+<p><code>void TIM_ETRClockMode2Config(TIM_TypeDef* TIMx, uint16_t TIM_ExtTRGPrescaler, uint16_t TIM_ExtTRGPolarity, uint16_t ExtTRGFilter);</code></p>
+<ul>
+<li>
+<p>功能：选择 ETR 通过<strong>外部时钟模式 2</strong>输入的时钟作为时基单元的时钟源</p>
+</li>
+<li>
+<p>参数：</p>
+<ol>
+<li>
+<p>选择定时器</p>
+</li>
+<li>
+<p>对 ETR 的外部时钟做分频，包含：<code>TIM_ExtTRGPSC_OFF</code>、<code>TIM_ExtTRGPSC_DIV2</code>、<code>TIM_ExtTRGPSC_DIV4</code>、<code>TIM_ExtTRGPSC_DIV8</code></p>
+</li>
+<li>
+<p>输入的极性，包含：<code>TIM_ExtTRGPolarity_Inverted</code>（反向，低电平/下降沿有效）、<code>TIM_ExtTRGPolarity_NonInverted</code>（不反向，高电平/上升沿有效）</p>
+</li>
+<li>
+<p>输入的滤波器，值区间在 0x00~0x0F，决定采样频率 f 和采样点 n 的</p>
+<p>值参考下图 👇</p>
+<p><img src="file:///d:\Project\STM32\.Notes\IMG\TIM_extra_0.png" alt=""></p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>*注意</strong>：对于<code>ETR</code>输入的外部时钟而言，模式 1 与模式 2 是等效的，若不需要触发输入的功能则两个函数可以互换</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>void TIM_ETRConfig(TIM_TypeDef* TIMx, uint16_t TIM_ExtTRGPrescaler, uint16_t TIM_ExtTRGPolarity, uint16_t ExtTRGFilter);</code></p>
+<ul>
+<li>功能：用来配置<code>ETR</code>引脚的预分频器、极性、滤波器等参数</li>
+<li>参数：
+<ol>
+<li>选择定时器</li>
+<li>对 ETR 的外部时钟做分频</li>
+<li>输入的极性</li>
+<li>输入的滤波器</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p><code>void TIM_PrescalerConfig(TIM_TypeDef* TIMx, uint16_t Prescaler, uint16_t TIM_PSCReloadMode);</code></p>
+<ul>
+<li>功能：单独写预分频值</li>
+<li>参数：
+<ol>
+<li>选择定时器</li>
+<li>写入的预分频值</li>
+<li>写入的模式，包含：
+<ul>
+<li><code>TIM_PSCReloadMode_Update</code>：使用缓冲器，更新事件发生后再修改</li>
+<li><code>TIM_PSCReloadMode_Immediate</code>：不使用缓冲器，直接修改</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p><code>void TIM_CounterModeConfig(TIM_TypeDef* TIMx, uint16_t TIM_CounterMode);</code></p>
+<ul>
+<li>功能：用来改变计数器的计数模式</li>
+<li>参数：
+<ol>
+<li>选择定时器</li>
+<li>更改计数器模式，包含：
+TIM_CounterMode_Up: TIM Up Counting Mode
+TIM_CounterMode_Down: TIM Down Counting Mode
+TIM_CounterMode_CenterAligned1: TIM Center Aligned Mode1
+TIM_CounterMode_CenterAligned2: TIM Center Aligned Mode2
+TIM_CounterMode_CenterAligned3: TIM Center Aligned Mode3</li>
+</ol>
+</li>
+</ul>
+<p><code>void TIM_ARRPreloadConfig(TIM_TypeDef* TIMx, FunctionalState NewState);</code></p>
+<ul>
+<li>功能：自动重装器预装功能配置，参考（<code>#TIM 定时中断/#计数器无预装时序</code>和<code>#TIM 定时中断/#计数器有预装时序</code>）。当使能时启用，ARR 的值会在更新事件触发后修改；失能时，ARR 的值会立即修改</li>
+<li>参数：
+<ol>
+<li>选择定时器</li>
+<li>指定使能还是失能，包含<code>ENABLE</code>、<code>DISABLE</code>共 2 个枚举成员</li>
+</ol>
+</li>
+</ul>
+<p><code>void TIM_SetCounter(TIM_TypeDef* TIMx, uint16_t Counter);</code></p>
+<ul>
+<li>功能：手动给给计数器写入一个值</li>
+<li>参数：
+<ol>
+<li>选择定时器</li>
+<li>要写入的值</li>
+</ol>
+</li>
+</ul>
+<p><code>void TIM_SetAutoreload(TIM_TypeDef* TIMx, uint16_t Autoreload);</code></p>
+<ul>
+<li>功能：手动给自动重装器写入一个值</li>
+<li>参数：
+<ol>
+<li>选择定时器</li>
+<li>要写入的值</li>
+</ol>
+</li>
+</ul>
+<p><code>uint16_t TIM_GetCounter(TIM_TypeDef* TIMx);</code></p>
+<ul>
+<li>功能：获取当前定时器的计数器的值，查看当前计数器计到哪里了</li>
+<li>参数：
+<ol>
+<li>选择定时器</li>
+</ol>
+</li>
+<li>返回：当前定时器的计数器的值</li>
+</ul>
+<p><code>uint16_t TIM_GetPrescaler(TIM_TypeDef* TIMx);</code></p>
+<ul>
+<li>功能：获取当前定时器的预分频器的值，查看预分频值</li>
+<li>参数：
+<ol>
+<li>选择定时器</li>
+</ol>
+</li>
+<li>返回：当前定时器的预分频器的值</li>
+</ul>
+<pre><code>FlagStatus TIM_GetFlagStatus(TIM_TypeDef* TIMx, uint16_t TIM_FLAG);
+
+void TIM_ClearFlag(TIM_TypeDef* TIMx, uint16_t TIM_FLAG);
+
+ITStatus TIM_GetITStatus(TIM_TypeDef* TIMx, uint16_t TIM_IT);
+
+void TIM_ClearITPendingBit(TIM_TypeDef* TIMx, uint16_t TIM_IT);
+</code></pre>
+<ul>
+<li>
+<p>参数：</p>
+<ol>
+<li><code>TIM_FLAG</code>：
+<ul>
+<li>TIM_FLAG_Update: TIM update Flag</li>
+<li>TIM_FLAG_CC1: TIM Capture Compare 1 Flag</li>
+<li>TIM_FLAG_CC2: TIM Capture Compare 2 Flag</li>
+<li>TIM_FLAG_CC3: TIM Capture Compare 3 Flag</li>
+<li>TIM_FLAG_CC4: TIM Capture Compare 4 Flag</li>
+<li>TIM_FLAG_COM: TIM Commutation Flag</li>
+<li>TIM_FLAG_Trigger: TIM Trigger Flag</li>
+<li>TIM_FLAG_Break: TIM Break Flag</li>
+<li>TIM_FLAG_CC1OF: TIM Capture Compare 1 overcapture Flag</li>
+<li>TIM_FLAG_CC2OF: TIM Capture Compare 2 overcapture Flag</li>
+<li>TIM_FLAG_CC3OF: TIM Capture Compare 3 overcapture Flag</li>
+<li>TIM_FLAG_CC4OF: TIM Capture Compare 4 overcapture Flag</li>
+</ul>
+</li>
+<li><code>TIM_IT</code>：
+<ul>
+<li>TIM_IT_Update: TIM update Interrupt source</li>
+<li>TIM_IT_CC1: TIM Capture Compare 1 Interrupt source</li>
+<li>TIM_IT_CC2: TIM Capture Compare 2 Interrupt source</li>
+<li>TIM_IT_CC3: TIM Capture Compare 3 Interrupt source</li>
+<li>TIM_IT_CC4: TIM Capture Compare 4 Interrupt source</li>
+<li>TIM_IT_COM: TIM Commutation Interrupt source</li>
+<li>TIM_IT_Trigger: TIM Trigger Interrupt source</li>
+<li>TIM_IT_Break: TIM Break Interrupt source</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>*注意</strong>：与 EXTI 后 4 个函数作用相同，可参考<code>#stm32f10x_exti</code>部分</p>
+</li>
+</ul>
+<p><code>void TIM_OCxInit(TIM_TypeDef* TIMx, TIM_OCInitTypeDef* TIM_OCInitStruct);</code></p>
+<ul>
+<li>
+<p>功能：用来配置 1 ~ 4 通道的输出比较单元模块</p>
+</li>
+<li>
+<p>参数：</p>
+<ol>
+<li>
+<p>选择定时器</p>
+</li>
+<li>
+<p>输出比较初始化结构体，包含：</p>
+<ul>
+<li>
+<p><code>TIM_OCMode</code>：设置输出比较模式，详细解释参考(<code>#通用输出比较通道/输出模式控制器</code>的模式框图)。包含：</p>
+<ul>
+<li><code>TIM_OCMode_Active</code>：相等时置有效电平</li>
+<li><code>TIM_OCMode_Inactive</code>：相等时置无效电平</li>
+<li><code>TIM_OCMode_PWM1</code>：PWM 模式 1（<strong>常用</strong>）</li>
+<li><code>TIM_OCMode_PWM2</code>：PWM 模式 2（PWM 模式 1 的取反）</li>
+<li><code>TIM_OCMode_Timing</code>：冻结模式</li>
+<li><code>TIM_OCMode_Toggle</code>：相等时置电平翻转</li>
+</ul>
+</li>
+<li>
+<p><code>TIM_OutputState</code>：设置输出使能，包含：</p>
+<ul>
+<li><code>TIM_OutputNState_Disable</code>：失能</li>
+<li><code>TIM_OutputNState_Enable</code>：使能</li>
+</ul>
+</li>
+<li>
+<p><code>TIM_OutputNState</code>：<strong>高级定时器使用</strong></p>
+</li>
+<li>
+<p><code>TIM_Pulse</code>：设置初始 CCR 值（直译是脉冲（？））。要求输出一个 0 ~ FFFF 的值</p>
+</li>
+<li>
+<p><code>TIM_OCPolarity</code>：设置输出比较的极性，包含：</p>
+<ul>
+<li><code>TIM_OCPolarity_High</code>：置 0，极性不翻转（<strong>常用</strong>）</li>
+<li><code>TIM_OCPolarity_Low</code>：置 1，极性翻转（High 值为 0，Low 为 1。差点被名字骗了...）</li>
+</ul>
+</li>
+<li>
+<p><code>TIM_OCNPolarity</code>：<strong>高级定时器使用</strong></p>
+</li>
+<li>
+<p><code>TIM_OCIdleState</code>：<strong>高级定时器使用</strong></p>
+</li>
+<li>
+<p><code>TIM_OCNIdleState</code>：<strong>高级定时器使用</strong></p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p><code>void TIM_OCStructInit(TIM_OCInitTypeDef* TIM_OCInitStruct);</code></p>
+<ul>
+<li>功能：和之前所有的 StructInit 功能一样，赋默认值。如果要配置高级定时器为通用定时器用可以用该函数补全高级定时器的初始化结构体参数</li>
+</ul>
+<p><code>void TIM_ForcedOC1~4Config(TIM_TypeDef* TIMx, uint16_t TIM_ForcedAction);</code></p>
+<ul>
+<li>功能：用来配置 1 ~ 4 通道的强制输出模式，参考(<code>#通用输出比较通道/输出模式控制器</code>的模式框图)。<strong>一般不用</strong></li>
+</ul>
+<p><code>void TIM_OC1~4PreloadConfig(TIM_TypeDef* TIMx, uint16_t TIM_OCPreload);</code></p>
+<ul>
+<li>功能：配置通道 1 ~ 4 的 CCR 预装功能，也就是影子寄存器。<strong>一般不用</strong></li>
+</ul>
+<p><code>void TIM_OC1~4FastConfig(TIM_TypeDef* TIMx, uint16_t TIM_OCFast);</code></p>
+<ul>
+<li>功能：配置通道 1 ~ 4 的快速使能，产生一个单脉冲。<strong>一般不用</strong></li>
+</ul>
+<p><code>void TIM_ClearOC1~4Ref(TIM_TypeDef* TIMx, uint16_t TIM_OCClear);</code></p>
+<ul>
+<li>功能：清除通道 1 ~ 4 外部事件时的 REF 信号。<strong>一般不用</strong></li>
+</ul>
+<p><code>void TIM_OC1~4PolarityConfig(TIM_TypeDef* TIMx, uint16_t TIM_OCPolarity);</code></p>
+<ul>
+<li>功能：单独配置通道 1 ~ 4（或高级定时器的 1N ~ 3N 互补通道）的输出比较的极性</li>
+</ul>
+<p><code>void TIM_CCxCmd(TIM_TypeDef* TIMx, uint16_t TIM_Channel, uint16_t TIM_CCx);</code></p>
+<ul>
+<li>功能：单独修改输出使能参数</li>
+</ul>
+<p><code>void TIM_SelectOCxM(TIM_TypeDef* TIMx, uint16_t TIM_Channel, uint16_t TIM_OCMode);</code></p>
+<ul>
+<li>功能：选择输出比较模式，用来单独更改输出比较模式</li>
+</ul>
+<p><code>void TIM_SetCompare1~4(TIM_TypeDef* TIMx, uint16_t Compare1);</code></p>
+<ul>
+<li>功能：单独更改 1 ~ 4 通道的 CCR 值。<strong>在运行时更改占空比就需要调用该函数</strong></li>
+</ul>
+<p><code>void TIM_CtrlPWMOutputs(TIM_TypeDef* TIMx, FunctionalState NewState);</code></p>
+<ul>
+<li>功能：当高级定时器输出 PWM 时使能或失能</li>
+<li><strong>*注意</strong>：<strong>当使用高级定时器输出 PWM 时需要使用该函数对其进行使能，否则将不能正常输出 PWM</strong></li>
+</ul>
+<p><code>void TIM_ICInit(TIM_TypeDef* TIMx, TIM_ICInitTypeDef* TIM_ICInitStruct);</code></p>
+<ul>
+<li>
+<p>功能：配置输入捕获单元。单一的配置一个通道</p>
+</li>
+<li>
+<p>参数：</p>
+<ol>
+<li>
+<p>选择定时器</p>
+</li>
+<li>
+<p>配置结构体，包含：</p>
+<ul>
+<li>
+<p><code>TIM_Channel</code>：选择具体配置哪一通道，包含：<code>TIM_Channel_1</code>、<code>TIM_Channel_2</code>、<code>TIM_Channel_3</code>、<code>TIM_Channel_4</code></p>
+</li>
+<li>
+<p><code>TIM_ICFilter</code>：选择输入捕获的滤波器，区间 0 ~ F。如果信号有毛刺和噪声，就可以增大滤波器参数，有效避免干扰。越大滤波效果越好</p>
+<p>与外部触发信号的滤波器参数相同，可参考下图 👇</p>
+<p><img src="file:///d:\Project\STM32\.Notes\IMG\TIM_extra_0.png" alt=""></p>
+</li>
+<li>
+<p><code>TIM_ICPolarity</code>：对应边沿检测的极性选择，包含：</p>
+<ul>
+<li><code>TIM_ICPolarity_BothEdge</code>：上升/下降沿都触发</li>
+<li><code>TIM_ICPolarity_Falling</code>：下降沿触发</li>
+<li><code>TIM_ICPolarity_Rising</code>：上升沿触发</li>
+</ul>
+</li>
+<li>
+<p><code>TIM_ICPrescaler</code>：触发信号分频器（位于数据选择器后，CCR 之前），1 分频则每次输入触发都有效，2 分频则需要 2 次触发信号...，以此类推，包含：<code>TIM_ICPSC_DIV1</code>、<code>TIM_ICPSC_DIV2</code>、<code>TIM_ICPSC_DIV4</code>、<code>TIM_ICPSC_DIV8</code></p>
+</li>
+<li>
+<p><code>TIM_ICSelection</code>：选择触发信号从哪个引脚输入（对应极性选择至分频器之间的数据选择器），包含：</p>
+<ul>
+<li><code>TIM_ICSelection_DirectTI</code>：直连通道（对应自己 CH 输入的信号）</li>
+<li><code>TIM_ICSelection_IndirectTI</code>：交叉通道（对应另一路 CH 输入的信号）</li>
+<li><code>TIM_ICSelection_TRC</code>：</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p><code>void TIM_ICStructInit(TIM_ICInitTypeDef* TIM_ICInitStruct);</code></p>
+<ul>
+<li>不多解释，赋初始值</li>
+</ul>
+<p><code>void TIM_PWMIConfig(TIM_TypeDef* TIMx, TIM_ICInitTypeDef* TIM_ICInitStruct);</code></p>
+<ul>
+<li>功能：配置输入捕获单元。快速配置两个通道。仅需配置一路通道后调用该函数，会将对应另一路通道配置为下降沿，交叉输入</li>
+<li><strong>*注意</strong>：该函数仅支持 CH1、CH2，不支持 CH3、CH4</li>
+</ul>
+<p><strong>主从触发模式：</strong></p>
+<ul>
+<li>
+<p><code>void TIM_SelectInputTrigger(TIM_TypeDef* TIMx, uint16_t TIM_InputTriggerSource);</code></p>
+<ul>
+<li>功能：选择输入触发源<code>TRGI</code>。对应触发源选择模式</li>
+<li>参数：
+<ol>
+<li>选择定时器</li>
+<li>触发源选择，包含：<code>TIM_TS_ITR0</code>、<code>TIM_TS_ITR1</code>、<code>TIM_TS_ITR2</code>、<code>TIM_TS_ITR3</code>、<code>TIM_TS_TI1F_ED</code>、<code>TIM_TS_TI1FP1</code>、<code>TIM_TS_TI2FP2</code>、<code>TIM_TS_ETRF</code></li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><code>void TIM_SelectOutputTrigger(TIM_TypeDef* TIMx, uint16_t TIM_TRGOSource);</code></p>
+<ul>
+<li>功能：选择输出触发源<code>TRGO</code>。对应主模式</li>
+<li>参数：
+<ol>
+<li>选择定时器</li>
+<li>选择主模式</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><code>void TIM_SelectSlaveMode(TIM_TypeDef* TIMx, uint16_t TIM_SlaveMode);</code></p>
+<ul>
+<li>功能：选择从模式</li>
+<li>参数：
+<ol>
+<li>选择定时器</li>
+<li>选择从模式，包含：<code>TIM_SlaveMode_Reset</code>、<code>TIM_SlaveMode_Gated</code>、<code>TIM_SlaveMode_Trigger</code>、<code>TIM_SlaveMode_External1</code></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p><code>void TIM_SetIC1~4Prescaler(TIM_TypeDef* TIMx, uint16_t TIM_ICPSC);</code></p>
+<ul>
+<li>功能：分别单独配置 CH1 ~ CH4 的分频器（配置输入捕获单元的结构体也可以进行配置，效果相同）。<strong>可忽略</strong></li>
+</ul>
+<p><code>uint16_t TIM_GetCapture1~4(TIM_TypeDef* TIMx);</code></p>
+<ul>
+<li>功能：分别读取 CH1 ~ CH4 的 CCR 寄存器值</li>
+</ul>
+<h2 id="stm32f10x_adc"><code>stm32f10x_adc</code>：</h2>
+<p><code>void ADC_Init(ADC_TypeDef* ADCx, ADC_InitTypeDef* ADC_InitStruct);</code></p>
+<ul>
+<li>功能：初始化 ADC</li>
+<li>参数：
+<ol>
+<li>选择 ADC</li>
+<li>配置结构体，包含成员：
+<ul>
+<li><code>ADC_Mode </code>：ADC 的工作模式，包含：
+<ul>
+<li><code>ADC_Mode_Independent</code>：独立模式，ADC1 和 ADC2 各转换个的</li>
+<li><code>ADC_Mode_RegInjecSimult</code>：</li>
+<li><code>ADC_Mode_RegSimult_AlterTrig</code>：</li>
+<li><code>ADC_Mode_InjecSimult_FastInterl</code>：</li>
+<li><code>ADC_Mode_InjecSimult_SlowInterl</code>：</li>
+<li><code>ADC_Mode_InjecSimult</code>：</li>
+<li><code>ADC_Mode_RegSimult</code>：</li>
+<li><code>ADC_Mode_FastInterl</code>：</li>
+<li><code>ADC_Mode_SlowInterl</code>：</li>
+<li><code>ADC_Mode_AlterTrig</code>：</li>
+</ul>
+</li>
+<li><code>ADC_ScanConvMode </code>：选择扫描转换模式，<code>ENABLE</code>选择<strong>扫描转换模式</strong>，<code>DISABLE</code>选择<strong>非扫描转换模式</strong>，包含：<code>ENABLE</code>、<code>DISABLE</code></li>
+<li><code>ADC_ContinuousConvMode </code>：选择连续转换模式，<code>ENABLE</code>选择<strong>连续转换模式</strong>，<code>DISABLE</code>选择<strong>单次转换模式</strong>，包含：<code>ENABLE</code>、<code>DISABLE</code></li>
+<li><code>ADC_ExternalTrigConv </code>：外部触发转换选择，触发控制的触发源，包含：
+<ul>
+<li><code>ADC_ExternalTrigConv_T1_CC1</code>：</li>
+<li><code>ADC_ExternalTrigConv_T1_CC2</code>：</li>
+<li><code>ADC_ExternalTrigConv_T2_CC2</code>：</li>
+<li><code>ADC_ExternalTrigConv_T3_TRGO</code>：</li>
+<li><code>ADC_ExternalTrigConv_T4_CC4</code>：</li>
+<li><code>ADC_ExternalTrigConv_Ext_IT11_TIM8_TRGO</code>：</li>
+<li><code>ADC_ExternalTrigConv_T1_CC3</code>：</li>
+<li><code>ADC_ExternalTrigConv_None</code>：不使用外部触发，使用软件触发</li>
+<li><code>ADC_ExternalTrigConv_T3_CC1</code>：</li>
+<li><code>ADC_ExternalTrigConv_T2_CC3</code>：</li>
+<li><code>ADC_ExternalTrigConv_T8_CC1</code>：</li>
+<li><code>ADC_ExternalTrigConv_T8_TRGO</code>：</li>
+<li><code>ADC_ExternalTrigConv_T5_CC1</code>：</li>
+<li><code>ADC_ExternalTrigConv_T5_CC3</code>：</li>
+</ul>
+</li>
+<li><code>ADC_DataAlign</code>：数据对齐方式，<strong>一般选右对齐</strong>，包含：<code>ADC_DataAlign_Right</code>、<code>ADC_DataAlign_Left</code></li>
+<li><code>ADC_NbrOfChannel </code>：通道数目，指定在扫描模式下总共会用到几个通道</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p><code>void ADC_Cmd(ADC_TypeDef* ADCx, FunctionalState NewState);</code></p>
+<ul>
+<li>功能：给 ADC 使能，开关控制</li>
+<li>参数：
+<ol>
+<li>选择 ADC</li>
+<li>指定使能还是失能，包含<code>ENABLE</code>、<code>DISABLE</code>共 2 个枚举成员</li>
+</ol>
+</li>
+</ul>
+<p><code>void ADC_DMACmd(ADC_TypeDef* ADCx, FunctionalState NewState);</code></p>
+<ul>
+<li>功能：开启 DMA 输出信号，如果使用 DMA 转运数据则需要调用该函数</li>
+</ul>
+<p><code>void ADC_ITConfig(ADC_TypeDef* ADCx, uint16_t ADC_IT, FunctionalState NewState);</code></p>
+<ul>
+<li>功能：用于控制某个中断，能否通往 NVIC。位于模拟看门狗到 NVIC 中间的中断输出控制部分</li>
+</ul>
+<p><strong>用于控制校准的函数（在 ADC 初始化完成后，依次调用即可）：</strong></p>
+<ul>
+<li>
+<p><code>void ADC_ResetCalibration(ADC_TypeDef* ADCx);</code></p>
+<ul>
+<li>功能：复位校准</li>
+</ul>
+</li>
+<li>
+<p><code>FlagStatus ADC_GetResetCalibrationStatus(ADC_TypeDef* ADCx);</code></p>
+<ul>
+<li>功能：获取复位校准状态。若校准寄存器被初始化则该为清除</li>
+<li>返回：<code>RESET</code>（复位校准完成）或<code>SET</code>（复位开始）</li>
+</ul>
+</li>
+<li>
+<p><code>void ADC_StartCalibration(ADC_TypeDef* ADCx);</code></p>
+<ul>
+<li>功能：开始校准</li>
+</ul>
+</li>
+<li>
+<p><code>FlagStatus ADC_GetCalibrationStatus(ADC_TypeDef* ADCx);</code></p>
+<ul>
+<li>功能：获取开始校准状态</li>
+<li>返回：<code>RESET</code>（校准完成）或<code>SET</code>（开始校准）</li>
+</ul>
+</li>
+</ul>
+<p><code>void ADC_SoftwareStartConvCmd(ADC_TypeDef* ADCx, FunctionalState NewState);</code></p>
+<ul>
+<li>功能：ADC 软件开始转换控制，用于软件触发控制</li>
+</ul>
+<p><code>FlagStatus ADC_GetSoftwareStartConvStatus(ADC_TypeDef* ADCx);</code></p>
+<ul>
+<li>功能：ADC 获取软件开始转换状态。<strong>不能用来判断转换是否结束，可以使用<code>ADC_GetFlagStatus</code>来获取<code>EOF</code></strong>。<strong>没啥用，一般不用</strong></li>
+</ul>
+<p><strong>配置 ADC 间断模式：</strong></p>
+<ul>
+<li>
+<p><code>void ADC_DiscModeChannelCountConfig(ADC_TypeDef* ADCx, uint8_t Number);</code></p>
+<ul>
+<li>功能：每隔几个通道间断一次</li>
+</ul>
+</li>
+<li>
+<p><code>void ADC_DiscModeCmd(ADC_TypeDef* ADCx, FunctionalState NewState);</code></p>
+<ul>
+<li>功能：间断模式使能</li>
+</ul>
+</li>
+</ul>
+<p><code>void ADC_RegularChannelConfig(ADC_TypeDef* ADCx, uint8_t ADC_Channel, uint8_t Rank, uint8_t ADC_SampleTime);</code></p>
+<ul>
+<li>功能：ADC 规则组通道配置，用于给序列的每个位置填写指定的通道</li>
+<li>参数：
+<ol>
+<li>选择 ADC</li>
+<li>选择通道，包含：<code>ADC_Channel_0</code>、<code>ADC_Channel_1</code>、<code>ADC_Channel_2</code>、<code>ADC_Channel_3</code>、<code>ADC_Channel_4</code>、<code>ADC_Channel_5</code>、<code>ADC_Channel_6</code>、<code>ADC_Channel_7</code>、<code>ADC_Channel_8</code>、<code>ADC_Channel_9</code>、<code>ADC_Channel_10</code>、<code>ADC_Channel_11</code>、<code>ADC_Channel_12</code>、<code>ADC_Channel_13</code>、<code>ADC_Channel_14</code>、<code>ADC_Channel_15</code>、<code>ADC_Channel_16</code>、<code>ADC_Channel_17</code></li>
+<li>将选择通道放置在序列的位置（序列 1 ~ 16）</li>
+<li>指定通道的采样时间，包含：</li>
+</ol>
+<ul>
+<li><code>ADC_SampleTime_1Cycles5</code> : Sample time equal to 1.5 cycles</li>
+<li><code>ADC_SampleTime_7Cycles5</code> : Sample time equal to 7.5 cycles</li>
+<li><code>ADC_SampleTime_13Cycles5</code> : Sample time equal to 13.5 cycles</li>
+<li><code>ADC_SampleTime_28Cycles5</code> : Sample time equal to 28.5 cycles</li>
+<li><code>ADC_SampleTime_41Cycles5</code> : Sample time equal to 41.5 cycles</li>
+<li><code>ADC_SampleTime_55Cycles5</code> : Sample time equal to 55.5 cycles</li>
+<li><code>ADC_SampleTime_71Cycles5</code> : Sample time equal to 71.5 cycles</li>
+<li><code>ADC_SampleTime_239Cycles5</code>: Sample time equal to 239.5 cycles</li>
+</ul>
+</li>
+</ul>
+<p><code>void ADC_ExternalTrigConvCmd(ADC_TypeDef* ADCx, FunctionalState NewState);</code></p>
+<ul>
+<li>功能：ADC 外部触发转换控制，是否允许外部触发转换</li>
+</ul>
+<p><code>uint16_t ADC_GetConversionValue(ADC_TypeDef* ADCx);</code></p>
+<ul>
+<li>功能：ADC 获取转换值，获取 ADC 的数据寄存器。<strong>在调用后会读取 <code>ADC_DR</code>，从而自动清除 EOC 标志位</strong></li>
+</ul>
+<p><code>uint32_t ADC_GetDualModeConversionValue(void);</code></p>
+<ul>
+<li>功能：ADC 获取双模式转换值</li>
+</ul>
+<p><strong>函数名中带<code>Injected</code>均为注入组的相关配置</strong></p>
+<p><strong>函数名中带<code>AnalogWatchdog</code>均为模拟看门狗的相关配置</strong></p>
+<p><code>void ADC_TempSensorVrefintCmd(FunctionalState NewState);</code></p>
+<ul>
+<li>功能：ADC 温度传感器、内部参考电压控制，用来开启内部这两个通道</li>
+</ul>
+<p><code>FlagStatus ADC_GetFlagStatus(ADC_TypeDef* ADCx, uint8_t ADC_FLAG);</code></p>
+<ul>
+<li>功能：获取 EOF 标志位状态，来判断转换是否结束</li>
+<li>参数：
+<ol>
+<li>选择 ADC</li>
+<li>选择哪个标志位，包含：
+<ul>
+<li><code>ADC_FLAG_AWD</code>：模拟看门狗触发</li>
+<li><code>ADC_FLAG_EOC</code>：规则/注入组转换完成</li>
+<li><code>ADC_FLAG_JEOC</code>：注入组转换完成</li>
+<li><code>ADC_FLAG_JSTRT</code>：注入组开始转换</li>
+<li><code>ADC_FLAG_STRT</code>：规则组开始转换</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>返回：<code>RESET</code>（转换未完成）或<code>SET</code>（转换完成）</li>
+</ul>
+<p><code>void ADC_ClearFlag(ADC_TypeDef* ADCx, uint8_t ADC_FLAG);</code></p>
+<ul>
+<li>功能：清除 EOF 标志位</li>
+</ul>
+<p><code>ITStatus ADC_GetITStatus(ADC_TypeDef* ADCx, uint16_t ADC_IT);</code></p>
+<ul>
+<li>功能：获取中断状态</li>
+</ul>
+<p><code>void ADC_ClearITPendingBit(ADC_TypeDef* ADCx, uint16_t ADC_IT);</code></p>
+<ul>
+<li>功能：清除中断挂起位</li>
+</ul>
+<h2 id="stm32f10x_dma"><code>stm32f10x_dma</code>：</h2>
+<p><code>void DMA_Init(DMA_Channel_TypeDef* DMAy_Channelx, DMA_InitTypeDef* DMA_InitStruct);</code></p>
+<ul>
+<li>功能：配置 DMA</li>
+<li>参数：
+<ol>
+<li>选择哪个 DMA 的哪个通道，<code>DMA1~2_Channel1~7（DMA1）/1~5（DMA2）</code></li>
+<li>配置结构体参数，成员包括：
+<ul>
+<li><code>DMA_PeripheralBaseAddr</code>：外设站点的起始地址</li>
+<li><code>DMA_PeripheralDataSize</code>：外设站点的数据宽度，包含：<code>DMA_PeripheralDataSize_Byte</code>（uint8_t）、<code>DMA_PeripheralDataSize_HalfWord</code>（uint16_t）、<code>DMA_PeripheralDataSize_Word</code>（uint32_t）</li>
+<li><code>DMA_PeripheralInc;</code>：外设站点的数据地址是否自增，包含：<code>DMA_PeripheralInc_Disable</code>、<code>DMA_PeripheralInc_Enable</code></li>
+</ul>
+<hr>
+<ul>
+<li><code>DMA_MemoryBaseAddr</code>：存储器站点的起始地址</li>
+<li><code>DMA_MemoryDataSize</code>：存储器站点的数据宽度，包含：<code>DMA_MemoryDataSize_Byte</code>（uint8_t）、<code>DMA_MemoryDataSize_HalfWord</code>（uint16_t）、<code>DMA_MemoryDataSize_Word</code>（uint32_t）</li>
+<li><code>DMA_MemoryInc;</code>：存储器站点的数据地址是否自增，包含：<code>DMA_MemoryInc_Disable</code>、<code>DMA_MemoryInc_Enable</code></li>
+</ul>
+<hr>
+<ul>
+<li><code>DMA_DIR</code>：数据传输方向，包含：<code>DMA_DIR_PeripheralDST</code>（destination 目的地，外设站点作为目的地。存储器 -&gt; 外设 ）、<code>DMA_DIR_PeripheralSRC</code>（source 源头，外设站点作为源端。外设 -&gt; 存储器）</li>
+<li><code>DMA_BufferSize</code>：缓冲区大小，也就是传输计数器。以数据单元指定缓存区大小（要传送几个数据单元，数据单元等于<strong>传输源</strong>站点的<strong>数据宽度</strong>）</li>
+<li><code>DMA_Mode</code>：传输模式，也就是是否使用自动重装，包含：<code>DMA_Mode_Circular</code>（自动重装。<strong>该模式不能应用在存储器到存储器模式下，也就是自动重装和软甲触发不能同时使用</strong>）、<code>DMA_Mode_Normal</code>（不自动重装）</li>
+<li><code>DMA_M2M</code>：选择是否是存储器到存储器，也就是选择硬件触发还是软件触发，包含：<code>DMA_M2M_Disable</code>（硬件触发）、<code>DMA_M2M_Enable</code>（软件触发）</li>
+<li><code>DMA_Priority</code>：指定通道的软件优先级，按照参数要求给优先级，包含：<code>DMA_Priority_High</code>、<code>DMA_Priority_Low</code>、<code>DMA_Priority_Medium</code>、<code>DMA_Priority_VeryHigh</code></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p><code>void DMA_Cmd(DMA_Channel_TypeDef* DMAy_Channelx, FunctionalState NewState);</code></p>
+<ul>
+<li>功能：使能 DMA</li>
+</ul>
+<p><code>void DMA_ITConfig(DMA_Channel_TypeDef* DMAy_Channelx, uint32_t DMA_IT,  FunctionalState NewState);</code></p>
+<ul>
+<li>功能：中断输出使能</li>
+<li>参数：
+<ol>
+<li>选择哪个 DMA 的哪个通道，<code>DMA1~2_Channel1~7（DMA1）/1~5（DMA2）</code></li>
+<li>选择哪个中断事件：<code>DMA_IT_TC</code>（转运完成）、<code>DMA_IT_HT</code>（转运过半）、<code>DMA_IT_TE</code>（转运错误）</li>
+<li>开启 DMA 中断</li>
+</ol>
+</li>
+</ul>
+<p><code>void DMA_SetCurrDataCounter(DMA_Channel_TypeDef* DMAy_Channelx, uint16_t DataNumber); </code></p>
+<ul>
+<li>功能：给<code>传输计数器</code>写入数据</li>
+</ul>
+<p><code>uint16_t DMA_GetCurrDataCounter(DMA_Channel_TypeDef* DMAy_Channelx);</code></p>
+<ul>
+<li>功能：返回<code>传输计数器</code>的值。可以查看还剩多少数据没有被转运</li>
+</ul>
+<p><code>FlagStatus DMA_GetFlagStatus(uint32_t DMAy_FLAG);</code></p>
+<ul>
+<li>功能：获取标志位状态</li>
+<li>参数：
+<ol>
+<li>要查看的 DMA 标志位，包含：<code>DMAy_FLAG_GLx</code>（DMAy 的 x 通道的<strong>全局标志位</strong>）、<code>DMAy_FLAG_TCx</code>（DMAy 的 x 通道的<strong>转运完成标志位</strong>）、<code>DMAy_FLAG_HTx</code>（DMAy 的 x 通道的<strong>转运过半标志位</strong>）、<code>DMAy_FLAG_TEx</code>（DMAy 的 x 通道的<strong>转运错误标志位</strong>）</li>
+</ol>
+</li>
+<li>返回：<code>RESET</code>（正在运行）、<code>SET</code>（完成）</li>
+<li><strong>*注意</strong>：标志位不会自动清除，需要手动清除</li>
+</ul>
+<p><code>void DMA_ClearFlag(uint32_t DMAy_FLAG);</code></p>
+<ul>
+<li>功能：清除标志位</li>
+<li>参数：
+<ol>
+<li>要清除的 DMA 标志位，包含：<code>DMAy_FLAG_GLx</code>（DMAy 的 x 通道的<strong>全局标志位</strong>）、<code>DMAy_FLAG_TCx</code>（DMAy 的 x 通道的<strong>转运完成标志位</strong>）、<code>DMAy_FLAG_HTx</code>（DMAy 的 x 通道的<strong>转运过半标志位</strong>）、<code>DMAy_FLAG_TEx</code>（DMAy 的 x 通道的<strong>转运错误标志位</strong>）</li>
+</ol>
+</li>
+</ul>
+<p><code>ITStatus DMA_GetITStatus(uint32_t DMAy_IT);</code></p>
+<ul>
+<li>功能：获取中断状态</li>
+<li>参数：
+<ol>
+<li>要查询的 DMA 中断挂起位，包含：<code>DMAy_IT_GLx</code>（DMAy 的 x 通道的<strong>全局挂起位</strong>）、<code>DMAy_IT_TCx</code>（DMAy 的 x 通道的<strong>转运完成挂起位</strong>）、<code>DMAy_IT_HTx</code>（DMAy 的 x 通道的<strong>转运过半挂起位</strong>）、<code>DMAy_IT_TEx</code>（DMAy 的 x 通道的<strong>转运错误挂起位</strong>）</li>
+</ol>
+</li>
+<li>返回：<code>RESET</code>（正在运行）、<code>SET</code>（完成）</li>
+<li><strong>*注意</strong>：中断挂起位不会自动清除，需要手动清除</li>
+</ul>
+<p><code>void DMA_ClearITPendingBit(uint32_t DMAy_IT);</code></p>
+<ul>
+<li>功能：清除中断挂起位</li>
+<li>参数：
+<ol>
+<li>要清除的 DMA 中断挂起位，包含：<code>DMAy_IT_GLx</code>（DMAy 的 x 通道的<strong>全局挂起位</strong>）、<code>DMAy_IT_TCx</code>（DMAy 的 x 通道的<strong>转运完成挂起位</strong>）、<code>DMAy_IT_HTx</code>（DMAy 的 x 通道的<strong>转运过半挂起位</strong>）、<code>DMAy_IT_TEx</code>（DMAy 的 x 通道的<strong>转运错误挂起位</strong>）</li>
+</ol>
+</li>
+</ul>
+<h2 id="stm32f10x_usart"><code>stm32f10x_usart</code>：</h2>
+<p><code>void USART_Init(USART_TypeDef* USARTx, USART_InitTypeDef* USART_InitStruct);</code></p>
+<ul>
+<li>功能：配置 USART 参数</li>
+<li>参数：
+<ol>
+<li>选择 USART</li>
+<li>参数结构体，成员包括：
+<ul>
+<li><code>USART_BaudRate</code>：波特率，可以直接写一个波特率的数值，如 9600</li>
+<li><code>USART_WordLength</code>：字长，包含：<code>USART_WordLength_8b</code>、<code>USART_WordLength_9b</code></li>
+<li><code>USART_StopBits</code>：停止位，包含：<code>USART_StopBits_1</code>、<code>USART_StopBits_0_5</code>、<code>USART_StopBits_2</code>、<code>USART_StopBits_1_5</code></li>
+<li><code>USART_Parity</code>：校验位，包含：<code>USART_Parity_No</code>（无校验）、<code>USART_Parity_Even</code>（偶校验）、<code>USART_Parity_Odd</code>（奇校验）</li>
+<li><code>USART_Mode</code>：选择模式，包含：<code>USART_Mode_Rx</code>（接收）、<code>USART_Mode_Tx</code>（发送）。如果既要发送又要接收就用按位或<code>|</code></li>
+<li><code>USART_HardwareFlowControl</code>：硬件流控制，包含：<code>USART_HardwareFlowControl_None</code>、<code>USART_HardwareFlowControl_RTS</code>、<code>USART_HardwareFlowControl_CTS</code>、<code>USART_HardwareFlowControl_RTS_CTS</code></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p><code>void USART_ClockInit(USART_TypeDef* USARTx, USART_ClockInitTypeDef* USART_ClockInitStruct);</code></p>
+<ul>
+<li>功能：配置同步时钟输出</li>
+</ul>
+<p><code>void USART_Cmd(USART_TypeDef* USARTx, FunctionalState NewState);</code></p>
+<ul>
+<li>功能：使能 USART</li>
+</ul>
+<p><code>void USART_ITConfig(USART_TypeDef* USARTx, uint16_t USART_IT, FunctionalState NewState);</code></p>
+<ul>
+<li>功能：配置 USART 中断控制</li>
+<li>参数：
+<ol>
+<li>选择 USART</li>
+<li>选择中断通道，包含：
+<ul>
+<li>USART_IT_CTS: CTS change interrupt (not available for UART4 and UART5)</li>
+<li>USART_IT_LBD: LIN Break detection interrupt</li>
+<li><code>USART_IT_TXE</code>：发送寄存器空</li>
+<li>USART_IT_TC: Transmission complete interrupt</li>
+<li><code>USART_IT_RXNE</code>：接收数据寄存器非空</li>
+<li>USART_IT_IDLE: Idle line detection interrupt</li>
+<li>USART_IT_PE: Parity Error interrupt</li>
+<li>USART_IT_ERR: Error interrupt(Frame error, noise error, overrun error)</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p><code>void USART_DMACmd(USART_TypeDef* USARTx, uint16_t USART_DMAReq, FunctionalState NewState);</code></p>
+<ul>
+<li>功能：开启 USART 到 DMA 的触发通道</li>
+</ul>
+<p><code>void USART_SendData(USART_TypeDef* USARTx, uint16_t Data);</code></p>
+<ul>
+<li>功能：发送数据，写 DR 寄存器</li>
+</ul>
+<p><code>uint16_t USART_ReceiveData(USART_TypeDef* USARTx);</code></p>
+<ul>
+<li>功能：接收数据，读 DR 寄存器</li>
+</ul>
+<p><code>FlagStatus USART_GetFlagStatus(USART_TypeDef* USARTx, uint16_t USART_FLAG);</code></p>
+<ul>
+<li>功能：获取 USART 的标志位状态。<strong>在调用后会访问 <code>USART_DR</code>，从而自动清除标志位</strong></li>
+<li>参数：
+<ol>
+<li>选择 USART</li>
+<li>选择标志位，包括：
+<ul>
+<li>USART_FLAG_CTS: CTS Change flag (not available for UART4 and UART5)</li>
+<li>USART_FLAG_LBD: LIN Break detection flag</li>
+<li><code>USART_FLAG_TXE</code>：发送寄存器空</li>
+<li>USART_FLAG_TC: Transmission Complete flag</li>
+<li><code>USART_FLAG_RXNE</code>：接收数据寄存器非空</li>
+<li>USART_FLAG_IDLE: Idle Line detection flag</li>
+<li>USART_FLAG_ORE: OverRun Error flag</li>
+<li><code>USART_FLAG_NE</code>：数据有噪音</li>
+<li>USART_FLAG_FE: Framing Error flag</li>
+<li>USART_FLAG_PE: Parity Error flag</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p><code>void USART_ClearFlag(USART_TypeDef* USARTx, uint16_t USART_FLAG);</code></p>
+<ul>
+<li>功能：清除标志位</li>
+</ul>
+<p><code>ITStatus USART_GetITStatus(USART_TypeDef* USARTx, uint16_t USART_IT);</code></p>
+<ul>
+<li>功能：获取中断挂起位状态</li>
+</ul>
+<p><code>void USART_ClearITPendingBit(USART_TypeDef* USARTx, uint16_t USART_IT);</code></p>
+<ul>
+<li>功能：清除中断挂起位状态</li>
+</ul>
+
+            
+            
+        </body>
+        </html>
