@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&#x6a21;&#x7535;&lpar;&#x7b80;&#x6d01;&#x901f;&#x901a;&#x7248;&rpar;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="模电简洁速通版">模电(简洁速通版)</h1>
+<h2 id="感谢">感谢</h2>
+<ul>
+<li><a href="https://www.bilibili.com/video/BV11p4y1K76m">https://www.bilibili.com/video/BV11p4y1K76m</a></li>
+</ul>
+<h2 id="1-pn-结">1. PN 结</h2>
+<h3 id="1-绝缘体半导体导体">1. 绝缘体、半导体、导体</h3>
+<ol>
+<li>
+<p>半导体的导电性能介于二者之间</p>
+</li>
+<li>
+<p>绝缘体和导体二者主要区别在于其<strong>原子核对自由电子的束缚能力强弱</strong></p>
+<blockquote>
+<p>如果在绝缘体两端加一个很高的能量，则自由电子也会脱离原子核的束缚，从而形成电流(闪电)</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="2-本征半导体">2. 本征半导体</h3>
+<p>即(Si/Ge)纯度比较高的半导体</p>
+<p>如果将 Si 原子(带+4 的原子核和外面 4 个自由电子组成)<strong>整齐排列，则称为晶格</strong></p>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\1.2_0.png" alt=""></p>
+<p>两个相邻原子之间有两个距离较近的自由电子，被称为共价键</p>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\1.2_1.png" alt=""></p>
+<p>空穴：自由电子(-1)脱离原子核束缚后会导致原本的原子带+1 电，并在原来的位置空出一个位置，则该位置称为空穴(+1)</p>
+<ul>
+<li>
+<p>温度对本征半导体的影响：</p>
+<p>本征半导体受温度的影响非常大，如果温度高，则自由电子活跃，导致脱离原子核的束缚、反之温度低则导电性能弱。因此会在本征半导体内掺杂，从而提高可靠和可控性</p>
+</li>
+</ul>
+<h3 id="3-杂质半导体">3. 杂质半导体</h3>
+<ul>
+<li>
+<p>分类：</p>
+<ol>
+<li>
+<p>N(Negative，负)型半导体，掺杂磷 P(+5)</p>
+</li>
+<li>
+<p>P(Positive，正)型半导体，掺杂硼 B(+3)</p>
+</li>
+</ol>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\1.3_0.png" alt=""></p>
+<blockquote>
+<p>由于磷+5 价，相比硅+4 价多出一个自由电子。所以对于 N 型半导体而言，里面的电子会比较多，导电性能比未掺杂的本征半导体而言较强</p>
+</blockquote>
+</li>
+<li>
+<p>多子 &amp; 少子：</p>
+<ol>
+<li>
+<p>当自由电子占多数时(N 型半导体)：称自由电子为多子，称空穴为少子</p>
+</li>
+<li>
+<p>当空穴占多数时(P 型半导体)：称空穴为多子，称自由电子为少子</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="4-pn-型半导体结合">4. P、N 型半导体结合</h3>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\1.4_0.png" alt=""></p>
+<p>对于 P 型半导体，用一个带负电的原子核和一个空穴来表示；对于 N 型半导体，用一个带正电的原子核和一个自由电子来表示</p>
+<ul>
+<li>
+<p>在交界面处：</p>
+<p>由于两边浓度相差很大(P 型空穴浓度大，电子浓度小；N 型电子浓度大，空穴浓度小)，在浓度差的作用下，两边的电子和空穴会发生<strong>扩散</strong>(N 型的电子与 P 型的空穴发生复合)</p>
+<p>从而使得空穴与自由电子成对的消失，在交界面附近形成了只带负电(P 型)和只带正电(N 型)的原子核。以此往复，越来越多的电子与空穴发生复合，从而使得正负原子核越来越多</p>
+<p>由于右边都是带正电的原子核，左边都是带负电的原子核，则在中间区域会形成一个电场(方向从正到负)</p>
+<p>因为电场存在，且电荷同名相斥、异名相吸，移向 P 型半导体中的电子会受到正电荷的吸引，从而使得扩散运动减弱。</p>
+<p>这种在电场影响下，电子发生吸引而发生定向移动的过程称为<strong>漂移</strong></p>
+</li>
+<li>
+<p>扩散与漂移的关系：</p>
+<p>在一开始，扩散 &gt; 漂移，因为此时并没有电场形成，也就不会有漂移过程产生。</p>
+<p>随着扩散的进行，中间电场强度会越来越强，使得漂移运动增强，从而抑制扩散运动</p>
+<p>当扩散 = 漂移时，P 型半导体与 N 型半导体中间就会形成一个称为<strong>耗尽层</strong>的区域，并在耗尽层中形成内电场</p>
+</li>
+</ul>
+<h2 id="2-二极管">2. 二极管</h2>
+<h3 id="1-组成">1. 组成</h3>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\2.1_0.png" alt=""></p>
+<p>二极管(两端元件)就是给 PN 结进行封装后引出导线</p>
+<h3 id="2-外部电场施加">2. 外部电场施加</h3>
+<ul>
+<li>
+<p>阳极接电源正极 <strong>(正向偏置)</strong> ：</p>
+<p>相当于给 PN 结外部施加了一个额外的电场，从而打破原本扩散=漂移的稳态</p>
+<p>在外部电场的作用下，N 型半导体的多子(自由电子)会受到电场的吸引，向左运动；同理 P 型半导体的空穴也会向右运动。从而<strong>加剧了扩散运动</strong> <em>(自由电子可以定向移动了，也就和导线的导电原理一样了)</em> ，同时因为内电场被抵消，所以<strong>抑制了漂移运动</strong></p>
+<p>正向偏置的情况下，载流子会大量定向移动，PN 结处于导通状态</p>
+</li>
+<li>
+<p>阳极接电源负 <strong>(反向偏置)</strong> ：</p>
+<p>相当于增强了内电场，<strong>增强了漂移运动，抑制了扩散运动</strong></p>
+<p>反向偏置的情况下，电场仅能吸引 P 型少子(电子)和 N 型少子(空穴)，所以只能形成非常微弱的电流，相当于开路，认为 PN 结处于截止状态</p>
+</li>
+</ul>
+<h3 id="3-开启电压">3. 开启电压</h3>
+<p>前面说过，PN 结内部是存在内电场的，且如果要使二极管正向偏置，则需要外部施加的电场抵消掉耗尽层的内电场。所以这个开启电压就是能够抵消内电场的最小电压</p>
+<p><em>伏安特性曲线：</em></p>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\2.3_0.png" alt=""></p>
+<p>二极管的伏安特性曲线会随温度升高而变化</p>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\2.3_1.png" alt=""></p>
+<blockquote>
+<p>由于温度升高导致自由电子运动加剧，同样的电压产生的电场就可能产生更多的电流</p>
+</blockquote>
+<p>硅(Si)管开启电压：0.5V <em>(导通电压 0.7V)</em></p>
+<p>锗(Ge)管开启电压：0.1V <em>(导通电压 0.2V)</em></p>
+<blockquote>
+<p>开启电压：是指达到该电压后开始出现电流，且随着电压增大通过的电流增多</p>
+</blockquote>
+<blockquote>
+<p>导通电压：是指二极管达到该电压后二极管彻底导通，在此电压之后电流大小与电压无关</p>
+</blockquote>
+<h3 id="4-反向电压">4. 反向电压</h3>
+<p>当反向电压施加过高时，PN 结就会被击穿，也会发生导通。称为<strong>反向击穿电压<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi><mrow><mi>B</mi><mi>R</mi></mrow></msub></mrow><annotation encoding="application/x-tex">U_{BR}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.00773em;">BR</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></strong></p>
+<ul>
+<li>
+<p>齐纳击穿：对于掺杂比较高的半导体，不需要加特别高的反向击穿电压，PN 结就会被击穿</p>
+</li>
+<li>
+<p>雪崩击穿：对于掺杂比较少的半导体，需要加比较大的反向击穿电压，才能击穿 PN 结</p>
+</li>
+</ul>
+<p><strong><code>电击穿可以恢复</code>，但因长时间电击穿导致热量无法耗散从而引发的<code>热击穿不可恢复</code></strong></p>
+<h3 id="5-非恒压时的特性">5. 非恒压时的特性</h3>
+<p>如果给二极管加的电压是交流或是时变的，PN 结的耗尽层宽度也会发生变化</p>
+<p>导致 PN 结呈现出电容效应：</p>
+<ul>
+<li>
+<p>势垒电容</p>
+</li>
+<li>
+<p>扩撒电容</p>
+</li>
+</ul>
+<h3 id="6-实际二极管的主要参数">6. 实际二极管的主要参数</h3>
+<ul>
+<li>
+<p>最大整流电流<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>F</mi></msub></mrow><annotation encoding="application/x-tex">I_{F}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">F</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：工作时允许流过的最大正向平均电流。从而引出二极管最大功率<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>D</mi></msub><mo>=</mo><msub><mi>I</mi><mrow><mi>O</mi><mi>M</mi></mrow></msub><mo separator="true">⋅</mo><msub><mi>V</mi><mi>F</mi></msub><mo stretchy="false">(</mo><mtext>正向压降</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P_D=I_{OM}·V_F(正向压降)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">OM</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord cjk_fallback">正向压降</span><span class="mclose">)</span></span></span></span></p>
+</li>
+<li>
+<p>反向工作峰值电压<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi><mrow><mi>R</mi><mi>M</mi></mrow></msub></mrow><annotation encoding="application/x-tex">U_{RM}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">RM</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：一般认为是击穿电压<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi><mrow><mi>B</mi><mi>R</mi></mrow></msub></mrow><annotation encoding="application/x-tex">U_{BR}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.00773em;">BR</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>的一半</p>
+</li>
+<li>
+<p>反向工作电流<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>R</mi></msub></mrow><annotation encoding="application/x-tex">I_R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：未击穿时的反向电流，该值越小则单向导电性越好</p>
+</li>
+<li>
+<p>最高工作频率<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>M</mi></msub></mrow><annotation encoding="application/x-tex">f_M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：维持单向导电性的最高工作频率</p>
+</li>
+</ul>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\2.6_0.png" alt=""></p>
+<h3 id="7-二极管钳位">7. 二极管钳位</h3>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\2.7_0.png" alt=""></p>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\2.7_1.png" alt=""></p>
+<h2 id="3-三极管">3. 三极管</h2>
+<h3 id="1-组成-1">1. 组成</h3>
+<ul>
+<li>
+<p>NPN：在 PN 结左边加入 N 型半导体</p>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\3.1_0.png" alt=""></p>
+<ul>
+<li>
+<p>电气符号：</p>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\3.1_2.png" alt=""></p>
+</li>
+</ul>
+<blockquote>
+<p>发射极的 P 参杂会多一些(拥有更多的自由电子)</p>
+<p>而集电极的基板面积会大一些</p>
+</blockquote>
+</li>
+<li>
+<p>PNP：在 PN 结右边加入 P 型半导体</p>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\3.1_1.png" alt=""></p>
+<ul>
+<li>
+<p>电气符号：</p>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\3.1_3.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<p><em>后续主要以 NPN 作为研究对象</em></p>
+<h3 id="2-概念">2. 概念</h3>
+<p>以 NPN 型为例：</p>
+<ul>
+<li>
+<p>发射结：发射极和基极之间的 PN 结</p>
+</li>
+<li>
+<p>集电结：基极和集电极之间的 PN 结</p>
+</li>
+</ul>
+<p><strong>信号放大条件：</strong></p>
+<ol>
+<li>
+<p>发射结正向偏置</p>
+</li>
+<li>
+<p>集电结反向偏置</p>
+</li>
+</ol>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\3.2_0.png" alt=""></p>
+<p>对应到上图：</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi><mi>b</mi></msub><mo>&gt;</mo><msub><mi>U</mi><mi>e</mi></msub><mo stretchy="false">(</mo><msub><mi>U</mi><mrow><mi>b</mi><mi>e</mi></mrow></msub><mo>&gt;</mo><mn>0</mn><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><msub><mi>U</mi><mi>c</mi></msub><mo>&gt;</mo><msub><mi>U</mi><mi>b</mi></msub><mo stretchy="false">(</mo><msub><mi>U</mi><mrow><mi>c</mi><mi>b</mi></mrow></msub><mo>&gt;</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+U_b&gt;U_e(U_{be}&gt;0)\\
+U_c&gt;U_b(U_{cb}&gt;0)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mclose">)</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span></p>
+<h3 id="3-输入输出特性">3. 输入输出特性</h3>
+<ul>
+<li>
+<p>输入特性(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mi>b</mi></msub><mtext>，</mtext><msub><mi>U</mi><mrow><mi>b</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">i_b，U_{be}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">，</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>)：</p>
+<ul>
+<li>
+<p>温度影响：与 PN 结类似，如果给<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi><mrow><mi>b</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">U_{be}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>加一个正向电压，当该电压大于导通电压后，电流会急剧上升。同时也会收到温度影响，温度高则曲线整体向左移(与二极管伏安特性曲线相似)</p>
+</li>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi><mrow><mi>c</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">U_{ce}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ce</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>影响：</p>
+<p>当三极管的发射极和集电极连接时，两者电位相同，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi><mi>c</mi></msub><mo>=</mo><msub><mi>U</mi><mi>e</mi></msub><mtext>，</mtext><msub><mi>U</mi><mrow><mi>c</mi><mi>e</mi></mrow></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">U_c=U_e，U_{ce}=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">，</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ce</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></p>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\3.3_0.png" alt=""></p>
+<p>此时<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi><mi>b</mi></msub></mrow><annotation encoding="application/x-tex">U_b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>通入一个很小的电压就可以将发射结和集电结同时导通</p>
+<p>如果<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi><mrow><mi>c</mi><mi>e</mi></mrow></msub><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">U_{ce}&gt;0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ce</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>，则输入特性曲线会向右移动</p>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\3.3_1.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p>输出特性(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mi>c</mi></msub><mtext>，</mtext><msub><mi>U</mi><mrow><mi>c</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">i_c，U_{ce}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">，</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ce</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>)：</p>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\3.3_2.png" alt=""></p>
+<blockquote>
+<p>上升的是饱和区，稳定的是放大区</p>
+</blockquote>
+<p>讨论三极管的信号放大时，都是工作在放大区内</p>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\3.3_3.png" alt=""></p>
+<p><strong>对于每一个不同的基极电流，输出特性的曲线也不同</strong></p>
+<p>当<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mi>b</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">i_b=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8095em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>时，可以认为三极管没有被导通。即使<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi><mrow><mi>c</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">U_{ce}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ce</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>很大，也只能通过很小的电流，该区域被称为截止区</p>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\3.3_4.png" alt=""></p>
+</li>
+</ul>
+<h2 id="4-共射放大电路发射极为公共接地端">4. 共射放大电路(发射极为公共接地端)</h2>
+<h3 id="1-三极管的放大作用">1. 三极管的放大作用</h3>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\4.1_0.png" alt=""></p>
+<ul>
+<li>
+<p>静态工作点(Q)：</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mrow><mi>b</mi><mi>Q</mi></mrow></msub><mtext>：如果用回路电流法来看，列</mtext><mi>K</mi><mi>V</mi><mi>L</mi><mtext>，则</mtext><msub><mi>U</mi><msub><mi>R</mi><mi>b</mi></msub></msub><mo>+</mo><msub><mi>U</mi><mrow><mi>b</mi><mi>e</mi><mi>Q</mi></mrow></msub><mo>=</mo><msub><mi>V</mi><mrow><mi>B</mi><mi>B</mi></mrow></msub><mtext>，</mtext><msub><mi>U</mi><mrow><mi>b</mi><mi>e</mi><mi>Q</mi></mrow></msub><mtext>就是导通电压，硅管为</mtext><mn>0.7</mn><mi>V</mi><mspace linebreak="newline"></mspace><mtext>其中</mtext><msub><mi>U</mi><msub><mi>R</mi><mi>b</mi></msub></msub><mo>=</mo><msub><mi>V</mi><mrow><mi>B</mi><mi>B</mi></mrow></msub><mo>−</mo><msub><mi>U</mi><mrow><mi>b</mi><mi>e</mi><mi>Q</mi></mrow></msub><mo>=</mo><msub><mi>i</mi><mrow><mi>b</mi><mi>Q</mi></mrow></msub><mo separator="true">⋅</mo><msub><mi>R</mi><mi>b</mi></msub><mo>⇒</mo><msub><mi>i</mi><mrow><mi>b</mi><mi>Q</mi></mrow></msub><mo>=</mo><mfrac><mrow><msub><mi>V</mi><mrow><mi>B</mi><mi>B</mi></mrow></msub><mo>−</mo><msub><mi>U</mi><mrow><mi>b</mi><mi>e</mi><mi>Q</mi></mrow></msub></mrow><msub><mi>R</mi><mi>b</mi></msub></mfrac><mspace linebreak="newline"></mspace><msub><mi>i</mi><mrow><mi>c</mi><mi>Q</mi></mrow></msub><mtext>：根据三极管放大倍数</mtext><mi>β</mi><mtext>得出，</mtext><msub><mi>i</mi><mrow><mi>c</mi><mi>Q</mi></mrow></msub><mo>=</mo><mi>β</mi><mo separator="true">⋅</mo><msub><mi>i</mi><mrow><mi>b</mi><mi>Q</mi></mrow></msub><mspace linebreak="newline"></mspace><msub><mi>u</mi><mrow><mi>c</mi><mi>e</mi><mi>Q</mi></mrow></msub><mtext>：</mtext><msub><mi>u</mi><mrow><mi>c</mi><mi>e</mi><mi>Q</mi></mrow></msub><mo>=</mo><msub><mi>V</mi><mrow><mi>C</mi><mi>C</mi></mrow></msub><mo>−</mo><msub><mi>i</mi><mrow><mi>c</mi><mi>Q</mi></mrow></msub><mo separator="true">⋅</mo><msub><mi>R</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">
+i_{bQ}：如果用回路电流法来看，列 KVL，则 U_{R_b}+U_{beQ}=V_{BB}，U_{beQ}就是导通电压，硅管为 0.7V\\
+其中 U_{R_b}=V_{BB}-U_{beQ}=i_{bQ}·R_b\Rightarrow i_{bQ}=\frac{V_{BB}-U_{beQ}}{R_b}\\
+i_{cQ}：根据三极管放大倍数\beta 得出，i_{cQ}=\beta·i_{bQ}\\
+u_{ceQ}：u_{ceQ}=V_{CC}-i_{cQ}·R_c
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">：如果用回路电流法来看，列</span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mord mathnormal">L</span><span class="mord cjk_fallback">，则</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3488em;margin-left:-0.0077em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1512em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2559em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">BB</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">，</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">就是导通电压，硅管为</span><span class="mord">0.7</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.9392em;vertical-align:-0.2559em;"></span><span class="mord cjk_fallback">其中</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3488em;margin-left:-0.0077em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1512em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2559em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">BB</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⇒</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9456em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.4423em;vertical-align:-0.4509em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9914em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3488em;margin-left:-0.0077em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1512em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.5131em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567em;margin-left:-0.2222em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">BB</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1433em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3488em;margin-left:-0.109em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2901em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4509em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">：根据三极管放大倍数</span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="mord cjk_fallback">得出，</span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ce</span><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">：</span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ce</span><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">CC</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
+</li>
+</ul>
+<h3 id="2-电阻偏置的共射放大电路">2. 电阻偏置的共射放大电路</h3>
+<p><img src="file:///d:\Project\Hardware\.Notes\模拟电子技术基础\pic\4.2_0.png" alt=""></p>
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>将上图中原本用于提供导通电压的</mtext><msub><mi>R</mi><mi>b</mi></msub><mtext>移至上方，用</mtext><msub><mi>R</mi><mrow><mi>b</mi><mn>1</mn></mrow></msub><mtext>表示</mtext></mrow><annotation encoding="application/x-tex">将上图中原本用于提供导通电压的R_b移至上方，用R_{b1}表示</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord cjk_fallback">将上图中原本用于提供导通电压的</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">移至上方，用</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">表示</span></span></span></span></p>
+</blockquote>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>
